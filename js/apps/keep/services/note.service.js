@@ -30,6 +30,10 @@ export const carService = {
 //     }
 // ];
 
+
+
+
+// ineer functions
 function _createNote(type = 'txt', isPinned = false, style = 'white', info) {
     const note = {
         id: utilService.makeId(),
@@ -37,11 +41,18 @@ function _createNote(type = 'txt', isPinned = false, style = 'white', info) {
         style: _addStyle(style),
         info: _addInfo(info, type)
     }
+    return note;
+}
+
+function _addStyle(style) {
+    console.log('you are at _addStyle')
+}
+
+function _addInfo(info, type) {
+    console.log('you are at _addInfo')
 }
 
 function _createNotes() {
     var notes = utilService.loadFromStorage(NOTES_KEY);
-    if (!notes || notes.length) {
-
-    }
+    if (!notes || notes.length) return notes;
 }
