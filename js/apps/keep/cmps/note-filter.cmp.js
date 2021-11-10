@@ -5,21 +5,21 @@ export default {
             <input @input="filter" v-model="filterBy.txt" type="text" placeholder="Search...">    
         </div>
         <div class="note-filter-type">
-            <select v-model="filterBy.type" id="types" name="types">
+            <select @change="filter" v-model="filterBy.type" type="text" placeholder="tag" id="types" name="types">
                 <option value="text">Texts</option>
                 <option value="img">Images</option>
                 <option value="todo">Todos</option>
                 <option value="video">Video</option>
             </select>
-            <span>Selected: {{type}}</span>
+            <span>Selected: {{filterBy.type}}</span>
         </div>
     </section>
     `,
     data() {
         return {
             filterBy: {
-                txt: '',
-                type: ''
+                type: '',
+                txt: ''
             }
         }
     },

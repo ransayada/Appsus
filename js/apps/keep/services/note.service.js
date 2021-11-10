@@ -1,7 +1,7 @@
 import { utilService } from "/js/services/util-service.js";
 import { storageService } from "/js/services/async-storage-service.js";
 
-const NOTES_KEY = 'notes_1';
+const NOTES_KEY = 'notes_3';
 _createNotes();
 
 export const noteService = {
@@ -106,7 +106,6 @@ function _addStyle(style) {
 }
 
 function _addInfo(info, type) {
-    // console.log('you are at _addInfo')
     var op;
     switch (type) {
         case "note-txt":
@@ -128,10 +127,12 @@ function _addInfo(info, type) {
 function _createNote(type = 'txt', isPinned = false, style = 'white', info) {
     const note = {
         id: utilService.makeId(),
+        type: type,
         isPinned: isPinned,
         style: _addStyle(style),
         info: _addInfo(info, type)
     }
+    console.log(note); //TODO: remove this is for debug
     return note;
 }
 
@@ -139,12 +140,12 @@ function _createNotes() {
     var notes = utilService.loadFromStorage(NOTES_KEY);
     if (!notes || notes.length) {
         notes = [];
-        notes.push(_createNote('txt', false, 'white', { txt: "Fullstack Me Baby!" }));
-        notes.push(_createNote('txt', false, 'white', { txt: "Fullstack Me Baby!" }));
-        notes.push(_createNote('txt', false, 'white', { txt: "Fullstack Me Baby!" }));
-        notes.push(_createNote('txt', false, 'white', { txt: "Fullstack Me Baby!" }));
-        notes.push(_createNote('txt', false, 'white', { txt: "Fullstack Me Baby!" }));
-        notes.push(_createNote('txt', false, 'white', { txt: "Fullstack Me Baby!" }));
+        notes.push(_createNote('note-txt', false, 'white', { txt: "Fullstack Me Baby!" }));
+        notes.push(_createNote('note-img', false, 'white', { url: "http://some-img/me", title: "Bobi and Me" }));
+        notes.push(_createNote('note-video', false, 'white', { url: "https://www.youtube.com/watch?v=5qap5aO4i9A" }));
+        notes.push(_createNote('note-todos', false, 'white', { label: "Get my stuff together", todos: [{ txt: "Driving liscence", doneAt: null }, { txt: "Coding power", doneAt: 187111111 }] }));
+        notes.push(_createNote('note-txt', false, 'white', { txt: "Fullstack Me Baby!" }));
+        notes.push(_createNote('note-txt', false, 'white', { txt: "Fullstack Me Baby!" }));
         utilService.saveToStorage(NOTES_KEY, notes);
     }
     return notes;
