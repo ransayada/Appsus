@@ -4,5 +4,5 @@ export default {
       <h1> heell </h1>
     </section>
     `
-    
+
 }

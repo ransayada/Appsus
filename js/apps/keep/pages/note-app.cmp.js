@@ -1,5 +1,5 @@
 import { noteService } from '../services/note.service.js';
-import { eventBus } from './services/event-bus-service.js';
+import { eventBus } from `js\services\event-bus-service.js`;
 import noteList from '../cmps/note-list.cmp.js';
 import noteFilter from '../cmps/note-filter.cmp.js';
 import noteDetails from '../pages/note-details.cmp.js';
