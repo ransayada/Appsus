@@ -77,7 +77,7 @@ function getEmptyNote(type) {
 
 //style colors table 0-white 1-blue 2-green 3-yellow 4-red 5-purple 6-orange 
 function _addStyle(style) {
-    console.log('you are at _addStyle')
+    // console.log('you are at _addStyle')
     var styleNum;
     switch (style) {
         case "white":
@@ -106,7 +106,7 @@ function _addStyle(style) {
 }
 
 function _addInfo(info, type) {
-    console.log('you are at _addInfo')
+    // console.log('you are at _addInfo')
     var op;
     switch (type) {
         case "note-txt":
