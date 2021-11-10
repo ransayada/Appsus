@@ -3,13 +3,15 @@ import { eventBus } from '/js/services/event-bus-service.js';
 import noteList from '../cmps/note-list.cmp.js';
 import noteFilter from '../cmps/note-filter.cmp.js';
 import noteDetails from '../pages/note-details.cmp.js';
+import noteAdd from '../cmps/note-add.cmp.js';
 
 
 export default {
     template: `
-    <section class="book-app">
-        <book-filter />
-        <book-list :books="booksToShow" />
+    <section class="note-app">
+        <note-filter @filtered="setFilter" />
+        <note-add />
+        <note-list :notes="notesToShow" @remove="removeNote"/>
     </section>
     `,
     data() {
@@ -52,17 +54,19 @@ export default {
     computed: {
         notesToShow() {
             if (!this.filterBy) return this.notes;
-            const { type } = this.filterBy;
-            const search = type.toLowerCase();
+            const { type, txt } = this.filterBy;
+            const search1 = txt.toLowerCase();
+            const search2 = type.toLowerCase();
             const notesToShow = this.notes.filter(note => {
-                return note.type.toLowerCase().includes(search);
+                return note.txt.toLowerCase().includes(search1) && note.type.toLowerCase().includes(search2);
             });
-            return notesToShow
-        },
-        components: {
-            noteFilter,
-            noteDetails,
-            noteList
+            return notesToShow;
         }
+    },
+    components: {
+        noteFilter,
+        noteDetails,
+        noteList,
+        noteAdd
     }
 }
