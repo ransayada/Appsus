@@ -1,2 +1,7 @@
-console.log('github')
-    //console.log('github')
+export default {
+    template: `
+    <section>
+      <h1> heell </h1>
+    </section>
+    `
+}

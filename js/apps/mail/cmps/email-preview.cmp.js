@@ -3,17 +3,21 @@ export default {
     template: `
         <div class="email-preview">
             <p>{{email.from}}</p>
-            <p>{{email.subject}}-{{emailDescription}}</p>
+            <p>{{email.subject}}- {{emailDescription}}</p>
             <p>{{emailSentAt}}</p>
         </div>
     `,
-    compued: {
+    created() {
+        console.log('preview');
+    },
+    computed: {
         emailSentAt() {
             const sentAt = new Date(this.email.sentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             return sentAt;
         },
         emailDescription() {
-            return this.email.body.substr(0, 50) + '...'; //not all message
+            var emailDesc = this.email.body.substr(0, 50);
+            return emailDesc + ((emailDesc.length < 50) ? '' : '...'); //not all message
         }
     }
 }

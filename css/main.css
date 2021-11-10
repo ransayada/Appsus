@@ -13,3 +13,19 @@
     justify-content: space-between;
     align-items: center;
 }
+
+
+
+/*mail*/
+
+.email-preview{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.folder:hover{
+    cursor: pointer;
+    background-color: burlywood;
+}
+

@@ -14,12 +14,14 @@ export const emailService = {
     remove,
     save,
     getEmptyEmail,
-    getById
+    getById,
+    getLoggedInUser,
+    toggleStaredMail
 };
 
 
 
-function getLoggedInUser(){
+function getLoggedInUser() {
     return loggedinUser;
 }
 
@@ -47,23 +49,37 @@ function save(email) {
     else return storageService.post(EMAILS_KEY, email);
 }
 
+function toggleStaredMail(emailId) {
+    storageService.get(EMAILS_KEY, emailId)
+        .then(email => {
+            console.log(email);
+            email.isStared = !email.isStared
+            storageService.put(EMAILS_KEY, email);
+        })
+   
+    
+}
+
+
 function getEmptyEmail() {
     return {
         id: '',
         subject: '',
         body: '',
         isRead: false,
+        isStared: false,
         sentAt: '',
         to: ''
     };
 }
 
-function _createEmail(subject = 'test subject', body = 'hi email',from='coding-academy@gmail.com' ,to = 'user@appsus.com', isRead = 'false') {
+function _createEmail(subject = 'test subject', body = 'hi email', from = 'coding-academy@gmail.com', to = 'user@appsus.com', isRead = false, isStared = false) {
     const email = {
         id: utilService.makeId(),
         subject,
         body,
         isRead,
+        isStared,
         sentAt: Date.now(),
         from,
         to
@@ -77,8 +93,8 @@ function _createEmails() {
     if (!emails || emails.length) {
         emails = []
         emails.push(_createEmail())
-        emails.push(_createEmail('hi second', 'aaaaa','sender@gmail.com' ,'o@gmail.com'))
-        emails.push(_createEmail('hi third', 'taaaaaa', 'yaron@gmail.com' ,'hiB@gmail.com'))
+        emails.push(_createEmail('hi second', 'aaaaa', 'sender@gmail.com', 'o@gmail.com'))
+        emails.push(_createEmail('hi third', 'taaaaaa', 'yaron@gmail.com', 'hiB@gmail.com'))
         utilService.saveToStorage(EMAILS_KEY, emails);
     }
 }

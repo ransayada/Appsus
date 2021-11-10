@@ -7,9 +7,9 @@ import noteDetails from '../pages/note-details.cmp.js';
 
 export default {
     template: `
-    <section class="note-app">
-        <note-filter />
-        <note-list :notes="notesToShow" />
+    <section class="book-app">
+        <book-filter />
+        <book-list :books="booksToShow" />
     </section>
     `,
     data() {
@@ -58,11 +58,11 @@ export default {
                 return note.type.toLowerCase().includes(search);
             });
             return notesToShow
+        },
+        components: {
+            noteFilter,
+            noteDetails,
+            noteList
         }
-    },
-    components: {
-        noteFilter,
-        noteDetails,
-        noteList
     }
 }
