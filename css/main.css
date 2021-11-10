@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+
+/* header  */
+
+.app-header {
+    background-color: #b64646;
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
