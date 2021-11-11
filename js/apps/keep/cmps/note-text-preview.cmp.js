@@ -1,9 +1,8 @@
 export default {
-    props: ['info'],
+    props: ['txt'],
     template: `
     <section class="note-text">
-        <h1> note text preview </h1>
-        <p> {{info.txt}}</p>
+        <p> {{txt}}</p>
     </section>
     `
 }

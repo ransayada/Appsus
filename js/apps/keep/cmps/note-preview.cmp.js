@@ -7,10 +7,10 @@ export default {
     props: ['note'],
     template: `
     <section class="note-preview">
-        <div v-if="note.type==='note-txt'"> <note-text-preview :info="note.info"/> text </div>
-        <div v-if="note.type==='note-img'"> <note-image-preview :info="note.info"/> image </div>
-        <div v-if="note.type==='note-video'"> <note-video-preview :info="note.info"/> video </div>
-        <div v-if="note.type==='note-todos'"> <note-todo-preview :info="note.info"/> todo </div>
+        <div v-if="note.type==='note-txt'"> <note-text-preview class="note-txt" :txt="note.info.txt"/> text </div>
+        <div v-if="note.type==='note-img'"> <note-image-preview class="note-img" :url="note.info.url"  :title="note.info.title"/> image </div>
+        <div v-if="note.type==='note-video'"> <note-video-preview class="note-video" :url="note.info.url"/> video </div>
+        <div v-if="note.type==='note-todos'"> <note-todo-preview class="note-todo" :todos="note.info.todos" :txt="note.info.lable"/> todo </div>
     </section>
     `,
     components: {
