@@ -27,7 +27,7 @@ export default {
             isStared: null
         };
     },
-    created() { },
+    created() {},
     methods: {
         close() {
 
