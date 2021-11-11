@@ -1,5 +1,5 @@
-import { emailService } from "/js/apps/mail/services/email.service.js";
-import { eventBus } from "/js/services/event-bus-service.js";
+import { emailService } from "./js/apps/mail/services/email.service.js";
+import { eventBus } from "./js/services/event-bus-service.js";
 
 export default {
     template: `
