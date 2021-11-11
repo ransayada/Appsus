@@ -1,6 +1,7 @@
 import { noteService } from '/js/apps/keep/services/note.service.js';
 import { eventBus } from '/js/services/event-bus-service.js';
 import noteList from '../cmps/note-list.cmp.js';
+import notePinned from '../cmps/note-pinned.cmp.js';
 import noteFilter from '../cmps/note-filter.cmp.js';
 import noteDetails from '../pages/note-details.cmp.js';
 import noteAdd from '../cmps/note-add.cmp.js';
@@ -10,23 +11,55 @@ export default {
     template: `
     <section class="note-app flex flex-column align-center">
         <note-filter class="note-filter flex flex-column align-center" @filtered="setFilter" />
-        <note-add  :types="['note-todos','note-txt','note-video','note-image']"/>
-        <note-list class="note-list" :notes="notesToShow" @remove="removeNote"/>
+        <note-add  :types="['note-todos','note-txt','note-video','note-image']" @newNote="setNewNote"/>
+        <note-pinned v-if="this.pinned!==null" class="pinned-list" :pinned="pinnedToShow"  @pin="pinNote" @read="readNote" @color="changeNoteColor" @edit="editNoteText" @clone="cloneNote" @remove="removeNote"/>
+        <note-list class="note-list" :notes="notesToShow"  @pin="pinNote" @read="readNote" @color="changeNoteColor" @edit="editNoteText" @clone="cloneNote" @remove="removeNote"/>
     </section>
     `,
     data() {
         return {
+            pinned: null,
             notes: null,
             filterBy: null
         };
     },
     created() {
         this.loadNotes();
+        this.loadPinnes();
     },
     methods: {
         loadNotes() {
             noteService.query()
                 .then(notes => this.notes = notes);
+        },
+        loadPinnes() {
+            noteService.pinquery()
+                .then(pinned => this.pinned = pinned);
+        },
+        pinNote(id) {
+            noteService.pin(id)
+                .then(() => this.loadPinnes())
+        },
+        readNote(id) {
+            console.log('note is read');
+            noteService.markAsRead(id)
+                .then(() => this.loadNotes())
+        },
+        changeNoteColor(id, color) {
+            console.log('note changed color');
+            noteService.changeNoteColor(id, color)
+                .then(() => this.loadNotes())
+
+        },
+        editNoteText(id, text) {
+            console.log('note text edited');
+            noteService.editNoteText(id, text)
+                .then(() => this.loadNotes())
+        },
+        cloneNote(id) {
+            console.log('note cloned');
+            noteService.clone(id)
+                .then(() => this.loadNotes())
         },
         removeNote(id) {
             noteService.remove(id)
@@ -49,6 +82,14 @@ export default {
         },
         setFilter(filterBy) {
             this.filterBy = filterBy;
+        },
+        setNewNote(newNote) {
+            console.log(newNote)
+            noteService.addNewNote(newNote)
+                .then(res => {
+                    this.loadNotes();
+                })
+
         }
     },
     computed: {
@@ -56,16 +97,31 @@ export default {
             if (!this.filterBy) return this.notes;
             const { type, txt } = this.filterBy;
             const search1 = txt.toLowerCase();
-            const search2 = type.toLowerCase();
-            const notesToShow = this.notes.filter(note => {
-                return note.txt.toLowerCase().includes(search1) && note.type.toLowerCase().includes(search2);
-            });
+            const search2 = type;
+            var notesToShow;
+            if (search2 === 'all') {
+                notesToShow = this.notes.filter(note => {
+                    console.log(note.label.toLowerCase())
+                    return note.label.toLowerCase().includes(search1)
+                });
+            } else {
+                notesToShow = this.notes.filter(note => {
+                    return note.label.toLowerCase().includes(search1) && (note.type === search2);
+                });
+            }
+
             return notesToShow;
+        },
+        pinnedToShow() {
+            var pinnedToShow = this.notes.filter(note => { return note.isPinned === true; })
+            return pinnedToShow;
         }
+
     },
     components: {
         noteFilter,
         noteDetails,
+        notePinned,
         noteList,
         noteAdd
     }
