@@ -20,27 +20,28 @@ export default {
         </ul>
     </section>
     `,
-    created(){
+    created() {
         console.log('list');
     },
     methods: {
         remove(emailId) {
             this.$emit('remove', emailId); //handle
         },
-        removeFromTrash(emailId){
+        removeFromTrash(emailId) {
             this.$emit('removeFromTrash', emailId); //handle
         }
         ,
-        toggleStar(emailId){
-           
-            this.$emit('toggleStar', emailId); 
+        toggleStar(emailId) {
+
+            this.$emit('toggleStar', emailId);
         },
-        readEmail(emailId){
-            
+        readEmail(emailId) {
+
             this.$emit('readEmail', emailId);
+            this.$router.push('/email/' + emailId);
         }
     },
-    components:{
+    components: {
         emailPreview
     }
 };

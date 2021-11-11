@@ -3,30 +3,56 @@ import { eventBus } from "/js/services/event-bus-service.js";
 import emailList from "../cmps/email-list.cmp.js";
 import emailFilter from "../cmps/email-filter.cmp.js";
 import emailFolderList from "/js/apps/mail/cmps/‏‏email-folder-list.cmp.js";
+import emailCompose from "/js/apps/mail/cmps/email-compose.cmp.js"
 
 
 export default {
     template: `
         <section class="email-app">
         <email-filter  @filtered="setFilter" />
+        <div class="fa fa-plus compose"  @click="openCompose"> Compose </div>
         <email-folder-list  @filtered="setFilterFolder" />
-            <email-list :emails="emailsToShow" @remove="removeEmail" @removeFromTrash="removeFromTrash" @toggleStar="toggleMailStar" @readEmail="readEmail"/>             
+            <email-compose v-if="this.user.isSendingEmail" :emptyEmail="emptyEmail" @sendMessage="sendMessage"  @closeSender="closeSender"/>
+            <email-list  :emails="emailsToShow" @remove="removeEmail" @removeFromTrash="removeFromTrash" @toggleStar="toggleMailStar" @readEmail="readEmail"/>             
         </section>
     `,
     data() {
         return {
             emails: null,
             user: emailService.getLoggedInUser(),
-            creteria: null
+            creteria: null,
+            emptyEmail: null
         };
     },
     created() {
         this.loadEmails();
+        eventBus.$on('toggleStar', this.toggleMailStar);
+        eventBus.$on('remove', this.removeEmail);
     },
     methods: {
         loadEmails() {
             emailService.query()
                 .then(emails => this.emails = emails);
+
+        },
+        openCompose() {
+            console.log('hi');
+            this.getEmptyEmail();
+            this.user.isSendingEmail = true;
+        },
+        getEmptyEmail() {
+            this.emptyEmail = emailService.getEmptyEmail()
+
+        },
+        closeSender() {
+            this.user.isSendingEmail = false;
+        },
+        sendMessage(email) {
+            this.user.isSendingEmail = false; //close sender
+            // console.log(email);
+            emailService.save(email)
+                .then(() => this.loadEmails())
+
 
         },
         toggleMailStar(id) {
@@ -75,14 +101,14 @@ export default {
         },
         setFilter(creteria) {
             if (this.creteria) {
-               
+
                 creteria.status = this.creteria.status
                 creteria.isStared = this.creteria.isStared
-            
+
             }
 
             this.creteria = creteria;
-            
+
             this.loadEmails()
         },
         setFilterFolder(creteria) {
@@ -111,7 +137,7 @@ export default {
             } else if (this.creteria.status === 'sent') {
                 // console.log(this.creteria.status);
                 emailsToShow = emailsToShow.filter((email => {
-                    return (email.to !== this.user.email) && (!email.sentToTrash)
+                    return (email.to !== this.user.email || email.from === this.user.email) && (!email.sentToTrash)
                 }))
             }
             else if (this.creteria.status === 'trash') {
@@ -132,11 +158,11 @@ export default {
                 });
             }
 
-            
+
 
             if (!this.creteria.showAll) {
                 emailsToShow = emailsToShow.filter((email => {
-                  
+
                     return (email.isRead === this.creteria.isRead) && (!email.sentToTrash)
                 }))
             }
@@ -149,6 +175,7 @@ export default {
     components: {
         emailList,
         emailFilter,
-        emailFolderList
+        emailFolderList,
+        emailCompose
     }
 };

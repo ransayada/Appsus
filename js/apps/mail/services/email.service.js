@@ -4,7 +4,8 @@ import { storageService } from "/js/services/async-storage-service.js";
 const EMAILS_KEY = 'emails';
 const loggedinUser = {
     email: 'user@appsus.com',
-    fullname: 'Omar Amer'
+    fullname: 'Omar Amer',
+    isSendingEmail:false
 }
 
 _createEmails();
