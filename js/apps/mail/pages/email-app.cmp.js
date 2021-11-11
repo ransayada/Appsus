@@ -2,81 +2,144 @@ import { emailService } from "/js/apps/mail/services/email.service.js";
 import { eventBus } from "/js/services/event-bus-service.js";
 import emailList from "../cmps/email-list.cmp.js";
 import emailFilter from "../cmps/email-filter.cmp.js";
+import emailFolderList from "/js/apps/mail/cmps/‏‏email-folder-list.cmp.js";
 
 
 export default {
     template: `
         <section class="email-app">
         <email-filter  @filtered="setFilter" />
-            <email-list :emails="emailsToShow" @remove="removeEmail" @toggleStar="toggleMailStar"/>             
+        <email-folder-list  @filtered="setFilterFolder" />
+            <email-list :emails="emailsToShow" @remove="removeEmail" @removeFromTrash="removeFromTrash" @toggleStar="toggleMailStar" @readEmail="readEmail"/>             
         </section>
     `,
     data() {
         return {
             emails: null,
-            user: null,
+            user: emailService.getLoggedInUser(),
             creteria: null
         };
     },
     created() {
-        console.log('hi');
         this.loadEmails();
     },
     methods: {
         loadEmails() {
             emailService.query()
                 .then(emails => this.emails = emails);
-            this.user = emailService.getLoggedInUser();
+
         },
-        toggleMailStar(id){
-            console.log('toggle Star');
-            emailService.toggleStaredMail(id);
+        toggleMailStar(id) {
+            emailService.toggleStaredMail(id)
+                .then(() => this.loadEmails())
+        },
+        readEmail(id) {
+            emailService.readMail(id)
+                .then(() => this.loadEmails())
+        },
+        removeFromTrash(id) {
+            emailService.toggleEmailTrash(id)
+                .then(() => this.loadEmails())
         }
         ,
         removeEmail(id) {
-            emailService.remove(id)
-                .then(() => {
-                    const msg = {
-                        txt: 'Deleted succesfully',
-                        type: 'success'
-                    };
-                    eventBus.$emit('showMsg', msg);
-                    this.emails = this.emails.filter(email => email.id !== id)
+            emailService.getById(id)
+                .then(email => {
+
+                    if (!email.sentToTrash) {
+                        emailService.toggleEmailTrash(id)
+                            .then(() => this.loadEmails())
+                    } else {
+                        emailService.remove(id)
+                            .then(() => {
+                                const msg = {
+                                    txt: 'Deleted succesfully',
+                                    type: 'success'
+                                };
+                                eventBus.$emit('showMsg', msg);
+                                this.emails = this.emails.filter(email => email.id !== id)
+                            })
+                            .catch(err => {
+                                console.log('err', err);
+                                const msg = {
+                                    txt: 'Error. Please try later',
+                                    type: 'error'
+                                };
+                                eventBus.$emit('showMsg', msg);
+                            });
+                    }
+
+
                 })
-                .catch(err => {
-                    console.log('err', err);
-                    const msg = {
-                        txt: 'Error. Please try later',
-                        type: 'error'
-                    };
-                    eventBus.$emit('showMsg', msg);
-                });
+
         },
         setFilter(creteria) {
+            if (this.creteria) {
+               
+                creteria.status = this.creteria.status
+                creteria.isStared = this.creteria.isStared
+            
+            }
+
             this.creteria = creteria;
+            
+            this.loadEmails()
+        },
+        setFilterFolder(creteria) {
+            this.creteria = creteria;
+            this.loadEmails()
         }
     },
     computed: {
         emailsToShow() {
             // console.log(this.emails);
             if (!this.creteria) return this.emails;
-            const searchStr = this.creteria.txt.toLowerCase();
             var emailsToShow = this.emails;
+            // console.log('here you ' + this.creteria.status);
+
+            if (this.creteria.isStared) {
+                // console.log('at stars ' + this.creteria.isStared);
+                emailsToShow = emailsToShow.filter((email => {
+                    // console.log('email stared ' + email.isStared);
+                    return email.isStared && (!email.sentToTrash)
+                }))
+            } else if (this.creteria.status === 'inbox') {
+                // console.log(this.creteria.status);
+                emailsToShow = emailsToShow.filter((email => {
+                    return (email.to === this.user.email) && (!email.sentToTrash)
+                }))
+            } else if (this.creteria.status === 'sent') {
+                // console.log(this.creteria.status);
+                emailsToShow = emailsToShow.filter((email => {
+                    return (email.to !== this.user.email) && (!email.sentToTrash)
+                }))
+            }
+            else if (this.creteria.status === 'trash') {
+                // console.log(this.creteria.status);
+                emailsToShow = emailsToShow.filter((email => {
+                    return email.sentToTrash
+                }))
+            }
+
+
+            const searchStr = this.creteria.txt.toLowerCase();
             if (searchStr) {
-                emailsToShow = this.emails.filter(email => {
+                // console.log(searchStr);
+                emailsToShow = emailsToShow.filter(email => {
+                    // console.log(email);
                     return (email.subject.toLowerCase().includes(searchStr) ||
                         email.body.toLowerCase().includes(searchStr))
                 });
             }
-            console.log(this.creteria.isStared);
-            if(this.creteria.isStared){
-                emailsToShow = emailsToShow.filter( (email => email.isStared))
-            }
 
             
 
-
-
+            if (!this.creteria.showAll) {
+                emailsToShow = emailsToShow.filter((email => {
+                  
+                    return (email.isRead === this.creteria.isRead) && (!email.sentToTrash)
+                }))
+            }
             return emailsToShow;
 
 
@@ -85,6 +148,7 @@ export default {
     },
     components: {
         emailList,
-        emailFilter
+        emailFilter,
+        emailFolderList
     }
 };

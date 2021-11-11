@@ -3,12 +3,12 @@ export default {
     template: `
         <div class="email-preview">
             <p>{{email.from}}</p>
-            <p>{{email.subject}}- {{emailDescription}}</p>
+            <p><span class="email-subject">{{email.subject}}</span>- <span class="email-desc">{{emailDescription}}</span></p>
             <p>{{emailSentAt}}</p>
         </div>
     `,
     created() {
-        console.log('preview');
+        
     },
     computed: {
         emailSentAt() {

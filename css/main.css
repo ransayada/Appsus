@@ -22,10 +22,51 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    
 }
 
+.email-preview-container{
+    border: 1px solid gray;
+    font-weight: bold;
+}
+.email-preview-container:hover{
+    border: 1px solid black;
+    box-shadow: 1px 3px gray;
+    cursor: pointer;
+    font-weight: bolder;
+    
+}
+.email-desc{
+    font-weight: normal;
+    color: gray; 
+}
+.email-subject{
+    font-size: 18px;
+
+}
 .folder:hover{
     cursor: pointer;
     background-color: burlywood;
 }
 
+.read{
+    font-weight: normal;
+    color: gray;  
+    background-color: rgb(241, 236, 236);
+}
+
+span.checked {
+    color: orange;
+}
+
+.removeMail:hover{
+    color: red;
+}
+
+.sendMail:hover{
+    color: lightskyblue;
+}
+
+.restoreMail:hover{
+    color: limegreen;
+}

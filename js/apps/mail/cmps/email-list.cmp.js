@@ -6,12 +6,15 @@ export default {
     <section class="email-list">
         <h2>Emails</h2>
         <ul>
-            <li v-for="email in emails" :key="email.id" class="email-preview-container" >
-                <email-preview :email="email" @click.native="log" />
+            <li v-for="email in emails" :key="email.id" class="email-preview-container" :class="{ read: email.isRead }" @click="readEmail(email.id)" >
+                <email-preview :email="email" />
                 <div class="actions">
-                    <!-- <button @click="remove(email.id)" >X</button> -->
-                    <button @click="addStar(email.id)" >⭐</button>
-                    <!-- <router-link :to="'/email/'+email.id" >Details</router-link> -->
+           
+                    <span class="fa fa-star" :class="{checked: email.isStared}" @click.stop="toggleStar(email.id)"></span>
+                    <span class="fa fa-trash removeMail"  @click.stop="remove(email.id)"></span>
+                    <span class="fa fa-paper-plane sendMail"  ></span>
+                    <span v-if="email.sentToTrash" title="remove from trash" class="fa fa-handshake-o restoreMail" @click.stop="removeFromTrash(email.id)"   ></span>
+                   
                 </div>
             </li>
         </ul>
@@ -24,11 +27,17 @@ export default {
         remove(emailId) {
             this.$emit('remove', emailId); //handle
         },
-        addStar(emailId){
+        removeFromTrash(emailId){
+            this.$emit('removeFromTrash', emailId); //handle
+        }
+        ,
+        toggleStar(emailId){
+           
             this.$emit('toggleStar', emailId); 
         },
-        log() {
-            console.log('Logging.....');
+        readEmail(emailId){
+            
+            this.$emit('readEmail', emailId);
         }
     },
     components:{

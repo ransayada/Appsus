@@ -16,7 +16,9 @@ export const emailService = {
     getEmptyEmail,
     getById,
     getLoggedInUser,
-    toggleStaredMail
+    toggleStaredMail,
+    readMail,
+    toggleEmailTrash
 };
 
 
@@ -28,6 +30,7 @@ function getLoggedInUser() {
 function query(creteria = {}) {
     return storageService.query(EMAILS_KEY)
         .then(emails => {
+            // console.log(emails);
             // if (filterBy.topCars) { check creteria to filter
 
             // }
@@ -50,11 +53,28 @@ function save(email) {
 }
 
 function toggleStaredMail(emailId) {
-    storageService.get(EMAILS_KEY, emailId)
+   return storageService.get(EMAILS_KEY, emailId)
         .then(email => {
-            console.log(email);
             email.isStared = !email.isStared
-            storageService.put(EMAILS_KEY, email);
+            save(email)
+        })
+   
+    
+}
+
+function toggleEmailTrash(emailId){
+    return storageService.get(EMAILS_KEY, emailId)
+    .then(email => {
+        email.sentToTrash = !email.sentToTrash
+        save(email)
+    })
+}
+
+function readMail(emailId) {
+   return storageService.get(EMAILS_KEY, emailId)
+        .then(email => {
+            email.isRead = true
+            save(email)
         })
    
     
@@ -68,6 +88,7 @@ function getEmptyEmail() {
         body: '',
         isRead: false,
         isStared: false,
+        sentToTrash:false,
         sentAt: '',
         to: ''
     };
@@ -80,6 +101,7 @@ function _createEmail(subject = 'test subject', body = 'hi email', from = 'codin
         body,
         isRead,
         isStared,
+        sentToTrash:false,
         sentAt: Date.now(),
         from,
         to
@@ -90,7 +112,9 @@ function _createEmail(subject = 'test subject', body = 'hi email', from = 'codin
 
 function _createEmails() {
     var emails = utilService.loadFromStorage(EMAILS_KEY);
-    if (!emails || emails.length) {
+    
+
+    if (!emails || !emails.length) {
         emails = []
         emails.push(_createEmail())
         emails.push(_createEmail('hi second', 'aaaaa', 'sender@gmail.com', 'o@gmail.com'))
