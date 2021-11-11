@@ -1,5 +1,3 @@
-
-
 export default {
     template: `
       <section class="email-folder-list">
