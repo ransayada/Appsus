@@ -4,8 +4,8 @@ export default {
     props: ['notes'],
     template: `
     <section class="note-list">
-        <ul>
-            <li v-for="note in notes" :key="note.id" class="note-preview-container">
+        <ul class="note-list-ul flex wrap center ul-none" style="padding:5px;">
+            <li style="border: 2px solid black;" v-for="note in notes" :key="note.id" class="note-preview-container">
                 <note-preview :note="note"/>
                 <img class="type-img" v-if="note.type==='text'" src='./img/text-type.png'/>
                 <img class="type-img" v-if="note.type==='img'" src='./img/img-type.png'/>

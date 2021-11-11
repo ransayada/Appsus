@@ -1,8 +1,9 @@
 export default {
-    props: ['info'],
+    props: ['url'],
     template: `
     <section >
-        <h1> note video preview </h1>
+        <iframe width="200" height="150" :src="url" title="fff" frameborder="1" allow="picture-in-picture" ></iframe>
     </section>
-    `
+    `,
+
 }

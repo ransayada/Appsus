@@ -15,10 +15,9 @@
 }
 
 
-
 /*mail*/
 
-.email-preview{
+.email-preview {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -44,7 +43,8 @@
     font-size: 18px;
 
 }
-.folder:hover{
+
+.folder:hover {
     cursor: pointer;
     background-color: burlywood;
 }
@@ -69,4 +69,41 @@ span.checked {
 
 .restoreMail:hover{
     color: limegreen;
+}
+/* keep */
+
+
+/* helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.wrap {
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ul-none {
+    list-style-type: none;
 }

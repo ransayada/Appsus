@@ -1,7 +1,7 @@
 import { utilService } from "/js/services/util-service.js";
 import { storageService } from "/js/services/async-storage-service.js";
 
-const NOTES_KEY = 'notes_3';
+const NOTES_KEY = 'notes_4';
 _createNotes();
 
 export const noteService = {
@@ -141,8 +141,8 @@ function _createNotes() {
     if (!notes || notes.length) {
         notes = [];
         notes.push(_createNote('note-txt', false, 'white', { txt: "Fullstack Me Baby!" }));
-        notes.push(_createNote('note-img', false, 'white', { url: "http://some-img/me", title: "Bobi and Me" }));
-        notes.push(_createNote('note-video', false, 'white', { url: "https://www.youtube.com/watch?v=5qap5aO4i9A" }));
+        notes.push(_createNote('note-img', false, 'white', { url: "https://media.istockphoto.com/photos/funny-french-bulldog-with-outstretched-tongue-portrait-picture-id1131100866?s=612x612", title: "Bobi and Me" }));
+        notes.push(_createNote('note-video', false, 'white', { url: "https://www.youtube.com/embed/5qap5aO4i9A" }));
         notes.push(_createNote('note-todos', false, 'white', { label: "Get my stuff together", todos: [{ txt: "Driving liscence", doneAt: null }, { txt: "Coding power", doneAt: 187111111 }] }));
         notes.push(_createNote('note-txt', false, 'white', { txt: "Fullstack Me Baby!" }));
         notes.push(_createNote('note-txt', false, 'white', { txt: "Fullstack Me Baby!" }));

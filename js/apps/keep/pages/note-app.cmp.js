@@ -5,13 +5,13 @@ import noteFilter from '../cmps/note-filter.cmp.js';
 import noteDetails from '../pages/note-details.cmp.js';
 import noteAdd from '../cmps/note-add.cmp.js';
 
-
+//note-app is root component
 export default {
     template: `
-    <section class="note-app">
-        <note-filter @filtered="setFilter" />
-        <note-add />
-        <note-list :notes="notesToShow" @remove="removeNote"/>
+    <section class="note-app flex flex-column align-center">
+        <note-filter class="note-filter flex flex-column align-center" @filtered="setFilter" />
+        <note-add  :types="['note-todos','note-txt','note-video','note-image']"/>
+        <note-list class="note-list" :notes="notesToShow" @remove="removeNote"/>
     </section>
     `,
     data() {
