@@ -1,9 +1,9 @@
-import { emailService } from "./js/apps/mail/services/email.service.js";
-import { eventBus } from "./js/services/event-bus-service.js";
+import { emailService } from "/js/apps/mail/services/email.service.js";
+import { eventBus } from "/js/services/event-bus-service.js";
 import emailList from "../cmps/email-list.cmp.js";
 import emailFilter from "../cmps/email-filter.cmp.js";
-import emailFolderList from "./js/apps/mail/cmps/‏‏email-folder-list.cmp.js";
-import emailCompose from "./js/apps/mail/cmps/email-compose.cmp.js"
+import emailFolderList from "/js/apps/mail/cmps/‏‏email-folder-list.cmp.js";
+import emailCompose from "/js/apps/mail/cmps/email-compose.cmp.js"
 
 
 export default {
@@ -66,8 +66,7 @@ export default {
         removeFromTrash(id) {
             emailService.toggleEmailTrash(id)
                 .then(() => this.loadEmails())
-        }
-        ,
+        },
         removeEmail(id) {
             emailService.getById(id)
                 .then(email => {
@@ -139,8 +138,7 @@ export default {
                 emailsToShow = emailsToShow.filter((email => {
                     return (email.to !== this.user.email || email.from === this.user.email) && (!email.sentToTrash)
                 }))
-            }
-            else if (this.creteria.status === 'trash') {
+            } else if (this.creteria.status === 'trash') {
                 // console.log(this.creteria.status);
                 emailsToShow = emailsToShow.filter((email => {
                     return email.sentToTrash

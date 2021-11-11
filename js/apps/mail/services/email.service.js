@@ -1,11 +1,11 @@
-import { utilService } from "./js/services/util-service.js";
-import { storageService } from "./js/services/async-storage-service.js";
+import { utilService } from "/js/services/util-service.js";
+import { storageService } from "/js/services/async-storage-service.js";
 
 const EMAILS_KEY = 'emails';
 const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Omar Amer',
-    isSendingEmail:false
+    isSendingEmail: false
 }
 
 _createEmails();
@@ -54,31 +54,31 @@ function save(email) {
 }
 
 function toggleStaredMail(emailId) {
-   return storageService.get(EMAILS_KEY, emailId)
+    return storageService.get(EMAILS_KEY, emailId)
         .then(email => {
             email.isStared = !email.isStared
             save(email)
         })
-   
-    
+
+
 }
 
-function toggleEmailTrash(emailId){
+function toggleEmailTrash(emailId) {
     return storageService.get(EMAILS_KEY, emailId)
-    .then(email => {
-        email.sentToTrash = !email.sentToTrash
-        save(email)
-    })
+        .then(email => {
+            email.sentToTrash = !email.sentToTrash
+            save(email)
+        })
 }
 
 function readMail(emailId) {
-   return storageService.get(EMAILS_KEY, emailId)
+    return storageService.get(EMAILS_KEY, emailId)
         .then(email => {
             email.isRead = true
             save(email)
         })
-   
-    
+
+
 }
 
 
@@ -89,7 +89,7 @@ function getEmptyEmail() {
         body: '',
         isRead: false,
         isStared: false,
-        sentToTrash:false,
+        sentToTrash: false,
         sentAt: '',
         to: ''
     };
@@ -102,7 +102,7 @@ function _createEmail(subject = 'test subject', body = 'hi email', from = 'codin
         body,
         isRead,
         isStared,
-        sentToTrash:false,
+        sentToTrash: false,
         sentAt: Date.now(),
         from,
         to
@@ -113,7 +113,7 @@ function _createEmail(subject = 'test subject', body = 'hi email', from = 'codin
 
 function _createEmails() {
     var emails = utilService.loadFromStorage(EMAILS_KEY);
-    
+
 
     if (!emails || !emails.length) {
         emails = []
