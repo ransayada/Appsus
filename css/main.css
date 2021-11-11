@@ -49,6 +49,11 @@
     background-color: burlywood;
 }
 
+.chosenFolder{
+    background-color: burlywood;
+}
+
+
 .read{
     font-weight: normal;
     color: gray;  
@@ -57,19 +62,84 @@
 
 span.checked {
     color: orange;
+    cursor: pointer;
 }
+
+.star{
+    cursor: pointer;
+}
+
+.compose{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.compose:hover{
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+.closeBtn:hover{
+    cursor: pointer;
+    color: red;
+}
+
 
 .removeMail:hover{
     color: red;
+    cursor: pointer;
 }
 
 .sendMail:hover{
     color: lightskyblue;
+    cursor: pointer;
+}
+
+.sendMailCompose{
+    color: white;
+}
+
+button.sendMail{
+    border: none;
+    background-color: transparent;
 }
 
 .restoreMail:hover{
     color: limegreen;
+    cursor: pointer;
 }
+
+.backToMail:hover{
+    color:chartreuse;
+    cursor: pointer;
+
+}
+
+.newMessage{
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.sendActions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+textarea{
+    resize: none;
+}
+
 /* keep */
 
 

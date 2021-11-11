@@ -8,7 +8,7 @@ export default {
         </div>
     `,
     created() {
-        
+
     },
     computed: {
         emailSentAt() {
@@ -16,8 +16,8 @@ export default {
             return sentAt;
         },
         emailDescription() {
-            var emailDesc = this.email.body.substr(0, 50);
-            return emailDesc + ((emailDesc.length < 50) ? '' : '...'); //not all message
+            var emailDesc = this.email.body.substr(0, 30);
+            return emailDesc + ((emailDesc.length < 30) ? '' : '...'); //not all message
         }
     }
 }
