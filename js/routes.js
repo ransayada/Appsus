@@ -26,8 +26,9 @@ const routes = [{
     {
         path: '/email/:emailId',
         component: emailDetails
+
     }
-    // {
+    //, {
     //     path: '/book',
     //     component: bookApp
     // }

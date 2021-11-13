@@ -2,9 +2,11 @@ import { eventBus } from '../services/event-bus-service.js';
 
 export default {
     template: `
-        <div v-if="msg" class="user-msg" :class="msg.type">
-            <p>{{msg.txt}}</p>
-        </div>
+        <transition name="fade">
+         <div v-if="msg" class="user-msg" :class="msg.type">
+                <p>{{msg.txt}}</p>
+            </div>
+        </transition>
     `,
     data() {
         return {
@@ -16,6 +18,7 @@ export default {
     },
     methods: {
         showMsg(msg) {
+            console.log('hi');
             this.msg = msg;
             setTimeout(() => {
                 this.msg = null;

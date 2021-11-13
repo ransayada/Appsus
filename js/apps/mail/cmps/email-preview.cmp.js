@@ -2,9 +2,9 @@ export default {
     props: ['email'],
     template: `
         <div class="email-preview">
-            <p>{{email.from}}</p>
-            <p><span class="email-subject">{{email.subject}}</span>- <span class="email-desc">{{emailDescription}}</span></p>
-            <p>{{emailSentAt}}</p>
+            <p class="email-prev-item">{{email.from}}</p>
+            <p class="email-prev-item"><span class="email-subject">{{email.subject}}</span>- <span class="email-desc">{{emailDescription}}</span></p>
+            <p class="email-prev-item">{{emailSentAt}}</p>
         </div>
     `,
     created() {

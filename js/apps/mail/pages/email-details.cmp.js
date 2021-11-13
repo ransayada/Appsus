@@ -4,18 +4,21 @@ import { eventBus } from "/js/services/event-bus-service.js";
 export default {
     template: `
         <section v-if="email" class="email-details">
-            <h3>{{email.subject}}</h3>
-            <p>sender : {{email.from}}</p>
-            <p>to : {{email.to}}</p>
-            <article>
+            <section class="details-actions">
+                <span class="fa fa-envelope backToMail" @click="close" title="back to Emails"  ></span>
+                <span class="fa fa-star star" :class="{checked: isStared}" @click="toggleStar()" title="save this mail in starred folder"></span>
+               <span class="fa fa-trash removeMail"  @click="remove()" title="delete this mail"></span>
+                <span class="fa fa-paper-plane sendMail" title="send maile to notes"  ></span>
+             </section>
+             <section class="allMailDetails">
+                <h3>{{email.subject}}</h3>
+                <p>sender : {{email.from}}</p>
+                <p>to : {{email.to}}</p>
+                <article>
                 <span> email body: </span> <br>
-                {{email.body}} 
-            </article>
-            <span class="fa fa-envelope backToMail" @click="close"  ></span>
-            <span class="fa fa-star star" :class="{checked: isStared}" @click="toggleStar()"></span>
-            <span class="fa fa-trash removeMail"  @click="remove()"></span>
-            <span class="fa fa-paper-plane sendMail"  ></span>
-            <!-- <button @click="close" >X</button> -->
+                    {{email.body}} 
+                </article>
+            </section> 
         </section>
         <section v-else class="loader">
             <h2>Loading...</h2>

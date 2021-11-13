@@ -1,236 +1,609 @@
-        * {
-            box-sizing: border-box;
-        }
-        /* header  */
-        
-        .app-header {
-            background-color: #b64646;
-            padding: 10px;
-            border-bottom: 1px solid #e5e5e5;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        /*mail*/
-        
-        .email-preview {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        
-        .email-preview-container {
-            border: 1px solid gray;
-            font-weight: bold;
-        }
-        
-        .email-preview-container:hover {
-            border: 1px solid black;
-            box-shadow: 1px 3px gray;
-            cursor: pointer;
-            font-weight: bolder;
-        }
-        
-        .email-desc {
-            font-weight: normal;
-            color: gray;
-        }
-        
-        .email-subject {
-            font-size: 18px;
-        }
-        
-        .folder:hover {
-            cursor: pointer;
-            background-color: burlywood;
-        }
-        
-        .chosenFolder {
-            background-color: burlywood;
-        }
-        
-        .read {
-            font-weight: normal;
-            color: gray;
-            background-color: rgb(241, 236, 236);
-        }
-        
-        span.checked {
-            color: orange;
-            cursor: pointer;
-        }
-        
-        .star {
-            cursor: pointer;
-        }
-        
-        .compose {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            border: 1px solid black;
-            border-radius: 25px;
-            padding: 10px;
-        }
-        
-        .compose:hover {
-            cursor: pointer;
-            background-color: greenyellow;
-        }
-        
-        .closeBtn:hover {
-            cursor: pointer;
-            color: red;
-        }
-        
-        .removeMail:hover {
-            color: red;
-            cursor: pointer;
-        }
-        
-        .sendMail:hover {
-            color: lightskyblue;
-            cursor: pointer;
-        }
-        
-        .sendMailCompose {
-            color: white;
-        }
-        
-        button.sendMail {
-            border: none;
-            background-color: transparent;
-        }
-        
-        .restoreMail:hover {
-            color: limegreen;
-            cursor: pointer;
-        }
-        
-        .backToMail:hover {
-            color: chartreuse;
-            cursor: pointer;
-        }
-        
-        .newMessage {
-            background-color: black;
-            color: white;
-            padding: 10px;
-        }
-        
-        .form {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .sendActions {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        textarea {
-            resize: none;
-        }
-        /* keep */
-        /* helpers */
-        
-        .flex {
-            display: flex;
-        }
-        
-        .flex-row {
-            flex-direction: row;
-        }
-        
-        .flex-column {
-            flex-direction: column;
-        }
-        
-        .center {
-            justify-content: center;
-        }
-        
-        .align-center {
-            align-items: center;
-        }
-        
-        .space-between {
-            justify-content: space-between;
-        }
-        
-        .wrap {
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .ul-none {
-            list-style-type: none;
-        }
-        
-        .border-radius {
-            border-radius: 10px;
-        }
-        
-        .my-table {
-            position: relative;
-        }
-        
-        .bc-milk {
-            background-color: rgb(255, 251, 251);
-        }
-        
-        li {
-            width: 205px;
-        }
-        
-        a {
-            cursor: pointer;
-        }
-        
-        .add-input {
-            border: none;
-            background-color: rgb(255, 220, 220);
-        }
-        
-        .add-note {
-            border-color: black;
-        }
-        
-        .add-note-div {
-            width: 300px;
-            height: 50px;
-        }
-        
-        .filter-box {
-            width: 300px;
-            height: 50px;
-            border-color: black solid;
-        }
-        
-        .filter-input {
-            border: none;
-            background-color: rgb(255, 220, 220);
-        }
-        
-        .note-app {
-            background-color: rgb(255, 220, 220);
-        }
-        
-        .note-preview-container {
-            min-height: 250px;
-        }
-        
-        .home-page {
-            height: 100vh;
-            background-color: rgb(255, 220, 220);
-        }
-        
-        .about-page {
-            height: 100vh;
-            background-color: rgb(255, 220, 220);
-        }
-        
-        html {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
+<<<<<<< HEAD * {
+    box-sizing: border-box;
+}
+
+
+/* header  */
+
+.app-header {
+    background-color: #b64646;
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/*mail*/
+
+.email-preview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.email-preview-container {
+    border: 1px solid gray;
+    font-weight: bold;
+}
+
+.email-preview-container:hover {
+    border: 1px solid black;
+    box-shadow: 1px 3px gray;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.email-desc {
+    font-weight: normal;
+    color: gray;
+}
+
+.email-subject {
+    font-size: 18px;
+}
+
+.folder:hover {
+    cursor: pointer;
+    background-color: burlywood;
+}
+
+.chosenFolder {
+    background-color: burlywood;
+}
+
+.read {
+    font-weight: normal;
+    color: gray;
+    background-color: rgb(241, 236, 236);
+}
+
+span.checked {
+    color: orange;
+    cursor: pointer;
+}
+
+.star {
+    cursor: pointer;
+}
+
+.compose {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.compose:hover {
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+.closeBtn:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.removeMail:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.sendMail:hover {
+    color: lightskyblue;
+    cursor: pointer;
+}
+
+.sendMailCompose {
+    color: white;
+}
+
+button.sendMail {
+    border: none;
+    background-color: transparent;
+}
+
+.restoreMail:hover {
+    color: limegreen;
+    cursor: pointer;
+}
+
+.backToMail:hover {
+    color: chartreuse;
+    cursor: pointer;
+}
+
+.newMessage {
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.sendActions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+textarea {
+    resize: none;
+}
+
+
+/* keep */
+
+
+/* helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.wrap {
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ul-none {
+    list-style-type: none;
+}
+
+.border-radius {
+    border-radius: 10px;
+}
+
+.my-table {
+    position: relative;
+}
+
+.bc-milk {
+    background-color: rgb(255, 251, 251);
+}
+
+li {
+    width: 205px;
+}
+
+a {
+    cursor: pointer;
+}
+
+.add-input {
+    border: none;
+    background-color: rgb(255, 220, 220);
+}
+
+.add-note {
+    border-color: black;
+}
+
+.add-note-div {
+    width: 300px;
+    height: 50px;
+}
+
+.filter-box {
+    width: 300px;
+    height: 50px;
+    border-color: black solid;
+}
+
+.filter-input {
+    border: none;
+    background-color: rgb(255, 220, 220);
+}
+
+.note-app {
+    background-color: rgb(255, 220, 220);
+}
+
+.note-preview-container {
+    min-height: 250px;
+}
+
+.home-page {
+    height: 100vh;
+    background-color: rgb(255, 220, 220);
+}
+
+.about-page {
+    height: 100vh;
+    background-color: rgb(255, 220, 220);
+}
+
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.user-msg {
+    position: absolute;
+    margin: auto;
+    bottom: 50px;
+    left: 10px;
+    padding: 10px;
+    color: darkblue;
+    border-radius: 15px;
+    background-color: rgb(204, 204, 204);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .35s;
+}
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active below version 2.1.8 */
+
+{
+    opacity: 0;
+}
+
+
+/* header  */
+
+.app-header {
+    background-color: rgb(187, 0, 27);
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    float: right;
+    margin-right: 40px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.router-link-exact-active {
+    color: gold;
+}
+
+.link:hover {
+    color: gold;
+}
+
+.logo {
+    color: white;
+    margin-left: 40px;
+    font-size: 25px;
+}
+
+.dot {
+    color: greenyellow;
+}
+
+
+/*mail*/
+
+.email-preview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 7vh;
+}
+
+.email-preview-container {
+    border-top: 0.5px solid rgb(204, 204, 204);
+    font-weight: bold;
+    height: 10vh;
+}
+
+.email-preview-container:last-child {
+    border-bottom: 0.5px solid rgb(204, 204, 204);
+}
+
+.email-preview-container:hover {
+    border: 1px solid black;
+    box-shadow: 1px 3px gray;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.email-desc {
+    font-weight: normal;
+    color: gray;
+}
+
+.email-subject {
+    font-size: 18px;
+}
+
+.folder:hover {
+    cursor: pointer;
+    background-color: burlywood;
+}
+
+.chosenFolder {
+    background-color: burlywood;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.read {
+    font-weight: normal;
+    color: gray;
+    background-color: rgb(241, 236, 236);
+}
+
+span.checked {
+    color: orange;
+    cursor: pointer;
+}
+
+.star {
+    cursor: pointer;
+}
+
+.compose {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.compose:hover {
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+.closeBtn:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.removeMail:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.sendMail:hover {
+    color: lightskyblue;
+    cursor: pointer;
+}
+
+.sendMailCompose {
+    color: white;
+}
+
+button.sendMail {
+    border: none;
+    background-color: transparent;
+}
+
+.restoreMail:hover {
+    color: limegreen;
+    cursor: pointer;
+}
+
+.backToMail:hover {
+    color: chartreuse;
+    cursor: pointer;
+}
+
+.newMessage {
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2;
+    width: 40%;
+    /* background-color: gray; */
+    border: none;
+    /* transform: translateX(110%);  */
+    bottom: 0px;
+    right: 50px;
+}
+
+.sendActions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+textarea {
+    resize: none;
+}
+
+
+/* filter*/
+
+.email-filter {
+    position: absolute;
+    display: inline-block;
+    justify-content: center;
+    left: 25%;
+    top: 5%;
+}
+
+input.filter-items {
+    width: 300px;
+}
+
+.filter-items {
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.email-app {
+    display: flex;
+    flex-direction: column;
+}
+
+.folder {
+    width: 100%;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.email-folder-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.email-list {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.email-preview-container {
+    width: 80vw;
+}
+
+.email-prev-item {
+    display: flex;
+    padding: 10px;
+    /* height: 5px; */
+}
+
+.email-details {
+    text-align: center;
+    padding: 25px;
+}
+
+.allMailDetails>* {
+    margin: 0 auto;
+    border-bottom: 0.5px solid rgb(211, 208, 208);
+}
+
+.allMailDetails>*:last-child {
+    border: 0.5px solid rgb(204, 204, 204);
+}
+
+.details-actions {
+    display: flex;
+    justify-content: end;
+    font-size: 20px;
+}
+
+.details-actions>* {
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.details-actions:last-child {
+    margin-right: 10px;
+}
+
+.mail-layout {
+    display: flex;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+}
+
+.mail-options {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+/*animations*/
+
+
+/* .welcomeImg {
+    transition: opacity 1s;
+  }
+  
+  .welcomeImg.fade-out {
+    opacity: 0;
+  } */
+
+
+/* keep */
+
+
+/* helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.wrap {
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ul-none {
+    list-style-type: none;
+}
+
+>>>>>>>b1a9a34951cdb21795e374b18419047bec1a141c
