@@ -1,4 +1,4 @@
-import { noteService } from '/js/apps/keep/services/note.service.js'
+import { noteService } from './apps/keep/services/note.service.js'
 
 export default {
     props: ['types'],
