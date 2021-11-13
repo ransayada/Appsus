@@ -1,5 +1,5 @@
 import { emailService } from "./apps/mail/services/email.service.js";
-import { eventBus } from "./services/event-bus-service.js";
+import { eventBus } from "../services/event-bus-service.js";
 import emailList from "../cmps/email-list.cmp.js";
 import emailFilter from "../cmps/email-filter.cmp.js";
 import emailFolderList from "./apps/mail/cmps/‏‏email-folder-list.cmp.js";
