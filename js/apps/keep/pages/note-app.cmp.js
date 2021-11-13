@@ -1,7 +1,6 @@
 import { noteService } from '/js/apps/keep/services/note.service.js';
 import { eventBus } from '/js/services/event-bus-service.js';
 import noteList from '../cmps/note-list.cmp.js';
-import notePinned from '../cmps/note-pinned.cmp.js';
 import noteFilter from '../cmps/note-filter.cmp.js';
 import noteDetails from '../pages/note-details.cmp.js';
 import noteAdd from '../cmps/note-add.cmp.js';
@@ -13,7 +12,7 @@ export default {
         <note-filter class="note-filter flex flex-column align-center" @filtered="setFilter" />
         <note-add  :types="['note-todos','note-txt','note-video','note-image']" @newNote="setNewNote"/>
         <note-pinned v-if="this.pinned!==null" class="pinned-list" :pinned="pinnedToShow"  @pin="pinNote" @read="readNote" @color="changeNoteColor" @edit="editNoteText" @clone="cloneNote" @remove="removeNote"/>
-        <note-list class="note-list" :notes="notesToShow"  @pin="pinNote" @read="readNote" @color="changeNoteColor" @edit="editNoteText" @clone="cloneNote" @remove="removeNote"/>
+        <note-list class="note-list" :notes="notesToShow"  @pin="pinNote" @read="readNote" @color="changeNoteColor(ob)" @edit="editNoteText" @clone="cloneNote" @remove="removeNote"/>
     </section>
     `,
     data() {
@@ -25,34 +24,28 @@ export default {
     },
     created() {
         this.loadNotes();
-        this.loadPinnes();
     },
     methods: {
         loadNotes() {
             noteService.query()
                 .then(notes => this.notes = notes);
         },
-        loadPinnes() {
-            noteService.pinquery()
-                .then(pinned => this.pinned = pinned);
-        },
         pinNote(id) {
             noteService.pin(id)
-                .then(() => this.loadPinnes())
+                .then(() => this.loadNotes());
         },
         readNote(id) {
-            console.log('note is read');
             noteService.markAsRead(id)
                 .then(() => this.loadNotes())
         },
-        changeNoteColor(id, color) {
+        changeNoteColor(ob) {
             console.log('note changed color');
-            noteService.changeNoteColor(id, color)
+            noteService.changeNoteColor(ob)
                 .then(() => this.loadNotes())
 
         },
         editNoteText(id, text) {
-            console.log('note text edited');
+            console.log('note text edited', text);
             noteService.editNoteText(id, text)
                 .then(() => this.loadNotes())
         },
@@ -121,7 +114,6 @@ export default {
     components: {
         noteFilter,
         noteDetails,
-        notePinned,
         noteList,
         noteAdd
     }

@@ -4,13 +4,15 @@ export default {
     props: ['types'],
     template: `
     <section class="add-note flex">
-            <input v-model="userInput" type="text" :placeholder="placeHolderString" @keyup.enter="addNote(userInput)"/>
+            <div class="add-note-div flex align-center space-between border-radius" style="border-style: solid; border-color: black;">
+            <input v-model="userInput" type="text" class="add-input" :placeholder="placeHolderString" @keyup.enter="addNote(userInput)"/>
             <div class="btn-container">
-                    <button class="btn btn-add-note txt-note-btn" @click.prevent="updateType('txt')"><i class="fas fa-text"></i></button>
-                    <button class="btn btn-add-note img-note-btn" @click.prevent="updateType('img')"><i class="fas fa-images"></i></button>
-                    <button class="btn btn-add-note todo-note-btn" @click.prevent="updateType('todo')"><i class="fas fa-list-ul"></i></button>
-                    <button class="btn btn-add-note video-note-btn" @click.prevent="updateType('video')"><i class="fab fa-youtube"></i></button>
+                    <a  style="color:grey;" class="btn btn-add-note txt-note-btn" @click.prevent="updateType('txt')"><i class="fas fa-text"></i></a>
+                    <a style="color:grey;" class="btn btn-add-note img-note-btn" @click.prevent="updateType('img')"><i class="fas fa-images"></i></a>
+                    <a style="color:grey;" class="btn btn-add-note todo-note-btn" @click.prevent="updateType('todo')"><i class="fas fa-list-ul"></i></a>
+                    <a style="color:grey;" class="btn btn-add-note video-note-btn" @click.prevent="updateType('video')"><i class="fab fa-youtube"></i></a>
             </div>
+</div>
     </section> 
     `,
     data() {

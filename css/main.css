@@ -1,179 +1,236 @@
-* {
-    box-sizing: border-box;
-}
-
-
-/* header  */
-
-.app-header {
-    background-color: #b64646;
-    padding: 10px;
-    border-bottom: 1px solid #e5e5e5;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-/*mail*/
-
-.email-preview {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    
-}
-
-.email-preview-container{
-    border: 1px solid gray;
-    font-weight: bold;
-}
-.email-preview-container:hover{
-    border: 1px solid black;
-    box-shadow: 1px 3px gray;
-    cursor: pointer;
-    font-weight: bolder;
-    
-}
-.email-desc{
-    font-weight: normal;
-    color: gray; 
-}
-.email-subject{
-    font-size: 18px;
-
-}
-
-.folder:hover {
-    cursor: pointer;
-    background-color: burlywood;
-}
-
-.chosenFolder{
-    background-color: burlywood;
-}
-
-
-.read{
-    font-weight: normal;
-    color: gray;  
-    background-color: rgb(241, 236, 236);
-}
-
-span.checked {
-    color: orange;
-    cursor: pointer;
-}
-
-.star{
-    cursor: pointer;
-}
-
-.compose{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid black;
-    border-radius: 25px;
-    padding: 10px;
-}
-
-.compose:hover{
-    cursor: pointer;
-    background-color: greenyellow;
-}
-
-.closeBtn:hover{
-    cursor: pointer;
-    color: red;
-}
-
-
-.removeMail:hover{
-    color: red;
-    cursor: pointer;
-}
-
-.sendMail:hover{
-    color: lightskyblue;
-    cursor: pointer;
-}
-
-.sendMailCompose{
-    color: white;
-}
-
-button.sendMail{
-    border: none;
-    background-color: transparent;
-}
-
-.restoreMail:hover{
-    color: limegreen;
-    cursor: pointer;
-}
-
-.backToMail:hover{
-    color:chartreuse;
-    cursor: pointer;
-
-}
-
-.newMessage{
-    background-color: black;
-    color: white;
-    padding: 10px;
-}
-
-.form{
-    display: flex;
-    flex-direction: column;
-}
-
-.sendActions{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-textarea{
-    resize: none;
-}
-
-/* keep */
-
-
-/* helpers */
-
-.flex {
-    display: flex;
-}
-
-.flex-row {
-    flex-direction: row;
-}
-
-.flex-column {
-    flex-direction: column;
-}
-
-.center {
-    justify-content: center;
-}
-
-.align-center {
-    align-items: center;
-}
-
-.space-between {
-    justify-content: space-between;
-}
-
-.wrap {
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.ul-none {
-    list-style-type: none;
-}
+        * {
+            box-sizing: border-box;
+        }
+        /* header  */
+        
+        .app-header {
+            background-color: #b64646;
+            padding: 10px;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /*mail*/
+        
+        .email-preview {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .email-preview-container {
+            border: 1px solid gray;
+            font-weight: bold;
+        }
+        
+        .email-preview-container:hover {
+            border: 1px solid black;
+            box-shadow: 1px 3px gray;
+            cursor: pointer;
+            font-weight: bolder;
+        }
+        
+        .email-desc {
+            font-weight: normal;
+            color: gray;
+        }
+        
+        .email-subject {
+            font-size: 18px;
+        }
+        
+        .folder:hover {
+            cursor: pointer;
+            background-color: burlywood;
+        }
+        
+        .chosenFolder {
+            background-color: burlywood;
+        }
+        
+        .read {
+            font-weight: normal;
+            color: gray;
+            background-color: rgb(241, 236, 236);
+        }
+        
+        span.checked {
+            color: orange;
+            cursor: pointer;
+        }
+        
+        .star {
+            cursor: pointer;
+        }
+        
+        .compose {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+            border-radius: 25px;
+            padding: 10px;
+        }
+        
+        .compose:hover {
+            cursor: pointer;
+            background-color: greenyellow;
+        }
+        
+        .closeBtn:hover {
+            cursor: pointer;
+            color: red;
+        }
+        
+        .removeMail:hover {
+            color: red;
+            cursor: pointer;
+        }
+        
+        .sendMail:hover {
+            color: lightskyblue;
+            cursor: pointer;
+        }
+        
+        .sendMailCompose {
+            color: white;
+        }
+        
+        button.sendMail {
+            border: none;
+            background-color: transparent;
+        }
+        
+        .restoreMail:hover {
+            color: limegreen;
+            cursor: pointer;
+        }
+        
+        .backToMail:hover {
+            color: chartreuse;
+            cursor: pointer;
+        }
+        
+        .newMessage {
+            background-color: black;
+            color: white;
+            padding: 10px;
+        }
+        
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sendActions {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        textarea {
+            resize: none;
+        }
+        /* keep */
+        /* helpers */
+        
+        .flex {
+            display: flex;
+        }
+        
+        .flex-row {
+            flex-direction: row;
+        }
+        
+        .flex-column {
+            flex-direction: column;
+        }
+        
+        .center {
+            justify-content: center;
+        }
+        
+        .align-center {
+            align-items: center;
+        }
+        
+        .space-between {
+            justify-content: space-between;
+        }
+        
+        .wrap {
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .ul-none {
+            list-style-type: none;
+        }
+        
+        .border-radius {
+            border-radius: 10px;
+        }
+        
+        .my-table {
+            position: relative;
+        }
+        
+        .bc-milk {
+            background-color: rgb(255, 251, 251);
+        }
+        
+        li {
+            width: 205px;
+        }
+        
+        a {
+            cursor: pointer;
+        }
+        
+        .add-input {
+            border: none;
+            background-color: rgb(255, 220, 220);
+        }
+        
+        .add-note {
+            border-color: black;
+        }
+        
+        .add-note-div {
+            width: 300px;
+            height: 50px;
+        }
+        
+        .filter-box {
+            width: 300px;
+            height: 50px;
+            border-color: black solid;
+        }
+        
+        .filter-input {
+            border: none;
+            background-color: rgb(255, 220, 220);
+        }
+        
+        .note-app {
+            background-color: rgb(255, 220, 220);
+        }
+        
+        .note-preview-container {
+            min-height: 250px;
+        }
+        
+        .home-page {
+            height: 100vh;
+            background-color: rgb(255, 220, 220);
+        }
+        
+        .about-page {
+            height: 100vh;
+            background-color: rgb(255, 220, 220);
+        }
+        
+        html {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
