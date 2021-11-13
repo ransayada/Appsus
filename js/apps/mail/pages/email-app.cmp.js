@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 import { emailService } from "../services/email.service.js";
 import { eventBus } from "../../../services/event-bus-service.js";
 import emailList from "../cmps/email-list.cmp.js";
 import emailFilter from "../cmps/email-filter.cmp.js";
 import emailFolderList from "../cmps/‏‏email-folder-list.cmp.js";
 import emailCompose from "../cmps/email-compose.cmp.js"
-=======
-import { emailService } from "./apps/mail/services/email.service.js";
-import { eventBus } from "../services/event-bus-service.js";
-import emailList from "../cmps/email-list.cmp.js";
-import emailFilter from "../cmps/email-filter.cmp.js";
-import emailFolderList from "./apps/mail/cmps/‏‏email-folder-list.cmp.js";
-import emailCompose from "./apps/mail/cmps/email-compose.cmp.js"
->>>>>>> 4f3f4aa883a046e7cedbb8dd957453bcbc6dc9a1
 
 
 export default {

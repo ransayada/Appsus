@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import { utilService } from "../../../services/util-service.js";
 import { storageService } from "../../../services/async-storage-service.js";
-=======
-import { utilService } from "./services/util-service.js";
-import { storageService } from "./services/async-storage-service.js";
->>>>>>> 4f3f4aa883a046e7cedbb8dd957453bcbc6dc9a1
 
 const EMAILS_KEY = 'emails';
 const loggedinUser = {
