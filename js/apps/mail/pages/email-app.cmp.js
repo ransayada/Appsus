@@ -16,7 +16,7 @@ export default {
             <email-folder-list  @filtered="setFilterFolder" />
         </section>
             <email-compose v-if="this.user.isSendingEmail" :emptyEmail="emptyEmail" @sendMessage="sendMessage"  @closeSender="closeSender"/>
-            <img v-if="!this.creteria" src="./img/welcome.gif">
+            <img v-if="!this.creteria" src="https://media0.giphy.com/media/aOften89vRbG/giphy.gif?cid=ecf05e47t21nx2gbhhhvao4fny7w38j9msx4jaenlddm9g1c&rid=giphy.gif&ct=g">
             <email-list  :emails="emailsToShow" @remove="removeEmail" @removeFromTrash="removeFromTrash" @toggleStar="toggleMailStar" @readEmail="readEmail"/>             
             </section>
         </section>
