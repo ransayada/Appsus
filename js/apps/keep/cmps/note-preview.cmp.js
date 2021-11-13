@@ -1,7 +1,7 @@
-import noteTextPreview from '/js/apps/keep/cmps/note-text-preview.cmp.js'
-import noteImagePreview from '/js/apps/keep/cmps/note-image-preview.cmp.js'
-import noteVideoPreview from '/js/apps/keep/cmps/note-video-preview.cmp.js'
-import noteTodoPreview from '/js/apps/keep/cmps/note-todo-preview.cmp.js'
+import noteTextPreview from './apps/keep/cmps/note-text-preview.cmp.js'
+import noteImagePreview from './apps/keep/cmps/note-image-preview.cmp.js'
+import noteVideoPreview from './apps/keep/cmps/note-video-preview.cmp.js'
+import noteTodoPreview from './apps/keep/cmps/note-todo-preview.cmp.js'
 
 export default {
     props: ['note'],
