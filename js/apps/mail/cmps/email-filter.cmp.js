@@ -3,14 +3,14 @@
 export default {
   template: `
       <div class="email-filter">
-          <label>
-              <input @input="filter" v-model="filterBy.txt" type="text" placeholder="Search Emails">
-              <select id="emails" @change="selectShown">
+          
+              <input class="filter-items" @input="filter" v-model="filterBy.txt" type="text" placeholder="Search Emails">
+              <select class="filter-items" id="emails" @change="selectShown">
                 <option value="all" >all</option>
                 <option value="read" >Read</option>
                 <option value="unread">Unread</option>
             </select>
-          </label>
+          
       </div>
   `,
   data() {

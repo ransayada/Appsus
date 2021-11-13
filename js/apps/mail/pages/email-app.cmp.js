@@ -10,10 +10,15 @@ export default {
     template: `
         <section class="email-app">
         <email-filter  @filtered="setFilter" />
-        <div class="fa fa-plus compose"  @click="openCompose"> Compose </div>
-        <email-folder-list  @filtered="setFilterFolder" />
+        <section class="mail-layout">  
+        <section class="mail-options">  
+            <div class="fa fa-plus compose"  @click="openCompose"> Compose </div>
+            <email-folder-list  @filtered="setFilterFolder" />
+        </section>
             <email-compose v-if="this.user.isSendingEmail" :emptyEmail="emptyEmail" @sendMessage="sendMessage"  @closeSender="closeSender"/>
+            <img v-if="!this.creteria" src="/img/welcome.gif">
             <email-list  :emails="emailsToShow" @remove="removeEmail" @removeFromTrash="removeFromTrash" @toggleStar="toggleMailStar" @readEmail="readEmail"/>             
+            </section>
         </section>
     `,
     data() {
@@ -51,13 +56,27 @@ export default {
             this.user.isSendingEmail = false; //close sender
             // console.log(email);
             emailService.save(email)
-                .then(() => this.loadEmails())
+                .then(() => {
+                    const msg = {
+                        txt: 'message sent',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);    
+                    this.loadEmails()
+                })
 
 
         },
         toggleMailStar(id) {
             emailService.toggleStaredMail(id)
-                .then(() => this.loadEmails())
+                .then(() => {
+                    // const msg = {
+                    //     txt: 'added to stared',
+                    //     type: 'success'
+                    // };
+                    // eventBus.$emit('showMsg', msg);    
+                    this.loadEmails()
+                })
         },
         readEmail(id) {
             emailService.readMail(id)
@@ -65,7 +84,15 @@ export default {
         },
         removeFromTrash(id) {
             emailService.toggleEmailTrash(id)
-                .then(() => this.loadEmails())
+                .then(() => {
+                    const msg = {
+                        txt: 'removed from trash',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);
+                
+                    this.loadEmails()
+                })
         },
         removeEmail(id) {
             emailService.getById(id)
@@ -73,7 +100,14 @@ export default {
 
                     if (!email.sentToTrash) {
                         emailService.toggleEmailTrash(id)
-                            .then(() => this.loadEmails())
+                            .then(() => {
+                                const msg = {
+                                    txt: 'sent to trash',
+                                    type: 'success'
+                                };
+                                eventBus.$emit('showMsg', msg);
+                                this.loadEmails()
+                            })
                     } else {
                         emailService.remove(id)
                             .then(() => {
@@ -118,7 +152,7 @@ export default {
     computed: {
         emailsToShow() {
             // console.log(this.emails);
-            if (!this.creteria) return this.emails;
+            if (!this.creteria) return;
             var emailsToShow = this.emails;
             // console.log('here you ' + this.creteria.status);
 
