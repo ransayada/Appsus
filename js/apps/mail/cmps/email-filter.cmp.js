@@ -3,13 +3,15 @@
 export default {
   template: `
       <div class="email-filter">
-          
-              <input class="filter-items" @input="filter" v-model="filterBy.txt" type="text" placeholder="Search Emails">
-              <select class="filter-items" id="emails" @change="selectShown">
-                <option value="all" >all</option>
-                <option value="read" >Read</option>
-                <option value="unread">Unread</option>
-            </select>
+              <div class="search-container">
+                    <input class="filter-items" @input="filter" v-model="filterBy.txt" type="text" placeholder="Search Emails">
+                    <select class="filter-items" id="emails" @change="selectShown">
+                
+                  <option value="all" >All</option>
+                  <option value="read" >Read</option>
+                  <option value="unread">Unread</option>
+                </select>
+            </div>
           
       </div>
   `,

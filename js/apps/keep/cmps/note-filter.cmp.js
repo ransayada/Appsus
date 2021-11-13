@@ -1,7 +1,7 @@
 export default {
     template: `
     <section class="note-filter">
-        <div class="filter-box flex space-between align-center border-radius" style="margin: 10px; border-style: solid; border-color: black;">
+        <div class="filter-box flex space-between align-center ">
         <div class="note-filter-input">
             <input class="filter-input" @keyup.enter="filter" v-model="filterBy.txt" type="text" placeholder="Search...">    
         </div>
