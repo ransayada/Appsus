@@ -47,7 +47,7 @@ var gNotes = [{
 function query(filterBy = {}) {
     return storageService.query(NOTES_KEY)
         .then(notes => {
-            return notes;
+            return orderPinnes(notes);
         });
 }
 
@@ -59,17 +59,16 @@ function pinquery() {
 }
 
 function pin(noteId) {
-    getById(noteId)
+    return getById(noteId)
         .then(res => {
             if (!res.isPinned) {
                 res.isPinned = true;
-                return storageService.post(PINNED, res)
-                    .then(remove(noteId))
+
             } else {
                 res.isPinned = false;
-                return storageService.remove(PINNED, noteId)
-                    .then(save(res));
+
             }
+            return save(res);
         })
 
 }
@@ -90,21 +89,22 @@ function markAsRead(noteId) {
         })
 }
 
-function changeNoteColor(noteId, color) {
-    var colo = _addStyle(color);
-    var note = getById(noteId);
+function changeNoteColor(ob) {
+    var colo = _addStyle(ob.color);
+    var note = getById(ob.id);
     note.style = colo;
     save(note);
 }
 
 function editNoteText(noteId, text) {
-    var note = getById(noteId);
-    if (!note.type == 'note-txt') {
-        return;
-    } else {
-        note.info.txt = text;
-        save(note);
-    }
+    return getById(noteId).then(res => {
+        if (res.type !== 'note-txt') {
+            return;
+        } else {
+            res.info.txt = text;
+            return save(res);
+        }
+    })
 }
 
 function clone(noteId) {
@@ -152,6 +152,17 @@ function getEmptyNote(type) {
             break;
     }
     return _createNote(type, false, false, 'white', op, 'label');
+}
+
+function orderPinnes(notes) {
+    var arr = [];
+    for (let i = 0; i < notes.length; i++) {
+        if (notes[i].isPinned) {
+            arr.push(notes[i])
+            notes.splice(i, 1);
+        }
+    }
+    return arr.concat(notes);
 }
 
 // function addNote(note) {
@@ -206,7 +217,7 @@ function _addInfo(info, type) {
             op = { label: info.label, todos: info.todos };
             break;
         case "note-video":
-            op = { url: info.url };
+            op = { url: 'https://www.youtube.com/embed/' + createYTId(info.url) };
             break;
     }
     return op;
@@ -250,4 +261,11 @@ function _createPins() {
     })
     utilService.saveToStorage(PINNED, pinned);
     return pinned;
+}
+
+function createYTId(txt) {
+    var id = txt.split('=')[1];
+    if (id === undefined) id = txt.split('/')[4];
+    console.log(id);
+    return id;
 }
