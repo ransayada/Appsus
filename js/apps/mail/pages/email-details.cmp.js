@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { emailService } from "../services/email.service.js";
 import { eventBus } from "../../../services/event-bus-service.js";
+=======
+import { emailService } from "./apps/mail/services/email.service.js";
+import { eventBus } from "./services/event-bus-service.js";
+>>>>>>> 4f3f4aa883a046e7cedbb8dd957453bcbc6dc9a1
 
 export default {
     template: `
